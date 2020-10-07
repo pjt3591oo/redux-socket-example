@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+
+import { Provider as ReduxProvider } from "react-redux"
+import store from './store'
+
+import {Provider as ReduxSocketProvider} from '@mung-office/redux-socket'
+import socket from './socket'
+
+import ChatComponent from './components/chat'
+  
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ReduxProvider store={store}>
+        <ReduxSocketProvider store={store} socket={socket}>
+          <ChatComponent />
+        </ReduxSocketProvider>
+      </ReduxProvider>
     </div>
   );
 }
