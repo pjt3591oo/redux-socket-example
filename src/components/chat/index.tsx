@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react"
+import React, { useState } from "react"
 import { useSelector } from "react-redux"
-import  { ReactReduxSocketContext }  from "@mung-office/redux-socket"
+import  { useSocket }  from "@mung-office/redux-socket"
 
 const ChatComponent = (props) => {
   let data:any = useSelector<any>(state => ({
@@ -8,8 +8,8 @@ const ChatComponent = (props) => {
   }))
  
   let [msg, setMsg] = useState("")
-  let socket: any = useContext(ReactReduxSocketContext)
-
+  let socket: any = useSocket()
+  
   return (
     <>
       <div>
