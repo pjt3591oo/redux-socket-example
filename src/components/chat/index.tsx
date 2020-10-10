@@ -18,7 +18,7 @@ const ChatComponent = (props) => {
           onChange={e => setMsg(e.target.value)}
         />
         <button
-          onClick={() => socket.send(msg)}
+          onClick={() => socket.send({msg})}
         > 
           전송
         </button>

@@ -9,17 +9,17 @@ class S extends Socket {
   @Decorators.listener()
   public receive(socket, store) {
     socket.on('/msg', (data) => {
-      console.log(data)
-      store.dispatch(onAddChat(data))
+      store.dispatch(onAddChat({
+        msg: data.msg.msg,
+        senderId: data.senderId
+      }))
     })
   }
 
-  public send(payload) {
-    let socket = super.getSocket()
-    let store = super.getStore()
-    
-    console.log(store)
-    socket.emit('/msg', payload)  
+  @Decorators.emitter("/msg")
+  public send(props) {
+    let [socket, store, payload] = props
+    console.log(payload)
   }
 
 }
